@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sea Pure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --blue-dark: #062c43;
+      --blue-main: #1b6ca8;
+      --blue-light: #e6f2ff;
+      --white: #ffffff;
+      --grey-text: #4a5568;
+      --border-light: #d9e6f2;
+    }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    system-ui, "Segoe UI", sans-serif;
+}
+
+
+    body {
+      background: var(--blue-light);
+      color: var(--grey-text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  /* glass effect */
+  background: rgba(255, 255, 255, 0.12);     /* transparent white */
+  backdrop-filter: blur(16px);               /* main blur */
+  -webkit-backdrop-filter: blur(16px);       /* Safari / iOS */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.4rem;
+
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+}
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-main), var(--blue-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      color: var(--blue-dark);
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--grey-text);
+      padding-bottom: 0.15rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue-main);
+      border-color: var(--blue-main);
+    }
+
+    .cart-button {
+      position: relative;
+      background: var(--blue-main);
+      color: var(--white);
+      border: none;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cart-count {
+      background: var(--white);
+      color: var(--blue-main);
+      border-radius: 999px;
+      padding: 0.05rem 0.45rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--blue-light), #f8fbff);
+      padding: 2.4rem 0 2rem;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--blue-main);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+      color: var(--blue-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.96rem;
+      max-width: 480px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .badge {
+      background: var(--white);
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.78rem;
+      border: 1px solid var(--border-light);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary {
+      background: var(--blue-main);
+      color: var(--white);
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue-main);
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid var(--blue-main);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .hero-card {
+      background: var(--white);
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(19, 72, 120, 0.08);
+      border: 1px solid var(--border-light);
+    }
+
+    .hero-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--blue-dark);
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      font-size: 0.76rem;
+    }
+
+    .hero-card-item {
+      background: var(--blue-light);
+      padding: 0.6rem;
+      border-radius: 0.6rem;
+    }
+
+    .hero-card-label {
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--blue-main);
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-card-value {
+      font-weight: 600;
+      color: var(--blue-dark);
+    }
+
+    section {
+      padding: 2.5rem 0 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      color: var(--blue-dark);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      max-width: 380px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 0.9rem;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-img-wrap {
+      background: radial-gradient(circle at top, #d9ecff, #ffffff);
+      padding: 0.8rem;
+    }
+
+    .product-img {
+      border-radius: 0.6rem;
+      height: 150px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .product-body {
+      padding: 0.8rem 0.9rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+    }
+
+    .product-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--blue-dark);
+    }
+
+    .product-desc {
+      font-size: 0.82rem;
+      color: var(--grey-text);
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      margin-top: 0.2rem;
+    }
+
+    .sku {
+      color: var(--blue-main);
+      font-weight: 600;
+    }
+
+    .weight {
+      color: #718096;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--blue-main);
+      font-size: 0.98rem;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 0.2rem;
+    }
+
+    .qty-input {
+      width: 44px;
+      padding: 0.2rem;
+      border-radius: 0.4rem;
+      border: 1px solid var(--border-light);
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .btn-add {
+      background: var(--blue-main);
+      color: var(--white);
+      border: none;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: var(--white);
+      border-radius: 0.9rem;
+      padding: 1.1rem;
+      border: 1px solid var(--border-light);
+      font-size: 0.9rem;
+    }
+
+    .info-card h3 {
+      color: var(--blue-dark);
+      margin-bottom: 0.5rem;
+      font-size: 1.02rem;
+    }
+
+    .info-list {
+      margin-top: 0.3rem;
+      padding-left: 1.1rem;
+      font-size: 0.85rem;
+    }
+
+    .info-list li {
+      margin-bottom: 0.2rem;
+    }
+
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 320px;
+      max-width: 100%;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -8px 0 30px rgba(10, 30, 60, 0.18);
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-panel.open {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-title {
+      font-weight: 600;
+      color: var(--blue-dark);
+    }
+
+    .cart-close {
+      background: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--grey-text);
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+    }
+
+    .cart-empty {
+      text-align: center;
+      color: #a0aec0;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.35rem 0.5rem;
+      align-items: center;
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid #edf2f7;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      color: var(--blue-dark);
+    }
+
+    .cart-item-meta {
+      font-size: 0.78rem;
+      color: #718096;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      justify-content: flex-end;
+    }
+
+    .cart-qty-btn {
+      background: var(--blue-light);
+      border: none;
+      border-radius: 999px;
+      width: 22px;
+      height: 22px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: var(--blue-main);
+    }
+
+    .cart-qty {
+      min-width: 20px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .cart-remove {
+      background: transparent;
+      border: none;
+      font-size: 0.8rem;
+      color: #e53e3e;
+      cursor: pointer;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--border-light);
+      padding: 0.8rem 1rem 1rem;
+      font-size: 0.86rem;
+    }
+
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+
+    .cart-total-label {
+      font-weight: 600;
+      color: var(--blue-dark);
+    }
+
+    .cart-total-value {
+      font-weight: 700;
+      color: var(--blue-main);
+    }
+
+    .checkout-form {
+      margin-top: 0.6rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.18rem;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      color: #718096;
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 0.4rem 0.45rem;
+      border-radius: 0.4rem;
+      border: 1px solid var(--border-light);
+      font-size: 0.8rem;
+    }
+
+    .btn-checkout {
+      margin-top: 0.4rem;
+      background: var(--blue-main);
+      color: var(--white);
+      border: none;
+      border-radius: 0.45rem;
+      padding: 0.45rem 0.6rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .checkout-hint {
+      font-size: 0.75rem;
+      color: #a0aec0;
+      margin-top: 0.25rem;
+    }
+
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--border-light);
+      padding: 1.1rem 0;
+      font-size: 0.8rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 1.8rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="cart-panel" id="cartPanel">
+    <div class="cart-header">
+      <div class="cart-title">Your Basket</div>
+      <button class="cart-close" id="cartCloseBtn" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">No items yet. Add some flavorful shutki.</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-row">
+        <span class="cart-total-label">Subtotal</span>
+        <span class="cart-total-value" id="cartSubtotal">৳0</span>
+      </div>
+      <form class="checkout-form" id="checkoutForm">
+        <div class="form-group">
+          <label for="custName">Full name</label>
+          <input type="text" id="custName" required placeholder="e.g. Rahim Uddin" />
+        </div>
+        <div class="form-group">
+          <label for="custPhone">Mobile number</label>
+          <input type="tel" id="custPhone" required placeholder="e.g. 01XXXXXXXXX" />
+        </div>
+        <div class="form-group">
+          <label for="custAddress">Delivery address</label>
+          <input type="text" id="custAddress" required placeholder="Road, Area, City" />
+        </div>
+        <div class="form-group">
+          <label for="custPayment">Payment method</label>
+          <select id="custPayment" required>
+            <option value="">Choose one</option>
+            <option>Cash on delivery</option>
+            <option>Bkash (manual)</option>
+            <option>Nagad (manual)</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-checkout">Place order</button>
+        <p class="checkout-hint">
+          Demo only: order details will be shown in an alert instead of real payment.
+        </p>
+      </form>
+    </div>
+  </aside>
+
+  <header>
+    <div class="container">
+      <nav class="nav">
+<div class="logo">
+  <img src="logo.png.png" alt="Sea Pure logo" style="height:60px;" />
+  <div class="logo-text">Sea Pure</div>
+</div>
+        <div class="nav-links">
+          <a href="#products">Products</a>
+          <a href="#about">About</a>
+          <a href="#sourcing">Sourcing</a>
+        </div>
+        <button class="cart-button" id="cartOpenBtn">
+          Cart
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="hero-tag">Dhaka born · Sea cured</div>
+        <h1 class="hero-title">Clean, honest shutki for everyday Bangla cooking.</h1>
+        <p class="hero-subtitle">
+          Small‑batch dried fish from coastal Bangladesh, sun‑cured and sealed
+          in food‑grade packs. No artificial color, no random mixing, just
+          consistent aroma and flavor.
+        </p>
+        <div class="hero-badges">
+          <span class="badge">Salt & sun cured</span>
+          <span class="badge">Moisture controlled</span>
+          <span class="badge">Batch‑wise traceability</span>
+        </div>
+        <div class="hero-cta">
+          <button class="btn-primary" onclick="scrollToId('products')">
+            Browse shutki
+          </button>
+          <button class="btn-outline" onclick="scrollToId('about')">
+            Our story
+          </button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-title">Today’s freshness snapshot</div>
+        <div class="hero-card-grid">
+          <div class="hero-card-item">
+            <div class="hero-card-label">Source coast</div>
+            <div class="hero-card-value">Cox’s Bazar & Kuakata</div>
+          </div>
+          <div class="hero-card-item">
+            <div class="hero-card-label">Drying time</div>
+            <div class="hero-card-value">3–5 days sun‑drying</div>
+          </div>
+          <div class="hero-card-item">
+            <div class="hero-card-label">Packaging</div>
+            <div class="hero-card-value">Sealed, food‑grade pouches</div>
+          </div>
+          <div class="hero-card-item">
+            <div class="hero-card-label">Batch testing</div>
+            <div class="hero-card-value">Visual & odor check</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">Shutki we are proud of</h2>
+          <p class="section-subtitle">
+            Core, everyday essentials in a compact menu. Pick your fish, set your quantity, and send the order directly from this page.
+          </p>
+        </div>
+      </div>
+      <div class="product-grid" id="productGrid">
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Who is behind the smell</h2>
+        <p class="section-subtitle">
+          A tiny team from Dhaka obsessed with getting that childhood shutki
+          smell into a clean, modern kitchen without the nasty surprises.
+        </p>
+      </div>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>About Sea Pure</h3>
+          <p>
+            Sea Pure started as a family‑run experiment to fix one
+            simple problem: shutki quality is unpredictable once it reaches the city.
+          </p>
+          <p style="margin-top:0.4rem;">
+            We keep the product list short, build direct relationships with a
+            few coastal suppliers, and focus on consistent batches instead of
+            hundreds of random items.
+          </p>
+          <ul class="info-list">
+            <li>Curated catalog of everyday shutki items.</li>
+            <li>Batch‑wise labeling so you know exactly what you bought.</li>
+            <li>Small storage cycles to keep stock moving and fresh.</li>
+          </ul>
+        </div>
+        <div class="info-card" id="sourcing">
+          <h3>How we source & dry</h3>
+          <p>
+            Fish is purchased at coastal landing stations in Cox’s Bazar and
+            Kuakata during early morning auctions and sorted the same day.
+          </p>
+          <p style="margin-top:0.4rem;">
+            We use traditional sun‑drying on raised bamboo beds with covered
+            netting, followed by moisture checks and quick packing in Dhaka.
+          </p>
+          <ul class="info-list">
+            <li>Visual sorting to remove damaged or stale fish.</li>
+            <li>Sun‑drying on clean raised platforms away from ground dust.</li>
+            <li>Final odor and texture check before packaging.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>&copy; <span id="yearNow"></span> Sea Pure. All rights reserved.</span>
+      <span>Dhaka, Bangladesh · WhatsApp / Phone order support available.</span>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: "SM-LOITTA-250",
+        name: "Premium Loitta Shutki",
+        description:
+          "Selected loitta pieces, medium‑salted, ideal for bhorta and jhol with strong aroma.",
+        price: 400,
+        weight: "250g pack",
+        image: "loitta.jpg.jpg",
+      },
+      {
+        id: "SM-CHURI-200",
+        name: "Churi Shutki (Small)",
+        description:
+          "Sun‑dried small churi Fish with clean shelling, perfect for shutki bhorta and mixed bhaji.",
+        price: 420,
+        weight: "200g pack",
+        image: "churi.jpg",
+      },
+      {
+        id: "SM-MIX-500",
+        name: "Mixed Shutki (Fried Ready)",
+        description:
+          "Mixed fish dried and lightly pre‑fried for quick cooking with onions and chili.",
+        price: 650,
+        weight: "500g pack",
+        image: "all.jpg",
+      },
+      {
+
+      },
+    ];
+
+    const productGrid = document.getElementById("productGrid");
+    const cartPanel = document.getElementById("cartPanel");
+    const cartOpenBtn = document.getElementById("cartOpenBtn");
+    const cartCloseBtn = document.getElementById("cartCloseBtn");
+    const cartItemsContainer = document.getElementById("cartItems");
+    const cartCountSpan = document.getElementById("cartCount");
+    const cartSubtotalSpan = document.getElementById("cartSubtotal");
+    const checkoutForm = document.getElementById("checkoutForm");
+
+    const cart = {};
+
+    function formatCurrency(amount) {
+      return "৳" + amount.toLocaleString("en-BD");
+    }
+
+    function renderProducts() {
+      productGrid.innerHTML = "";
+      products.forEach((p) => {
+        const card = document.createElement("article");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="product-img-wrap">
+            <img src="${p.image}" alt="${p.name}" class="product-img">
+          </div>
+          <div class="product-body">
+            <h3 class="product-name">${p.name}</h3>
+            <p class="product-desc">${p.description}</p>
+            <div class="product-meta">
+              <span class="sku">SKU: ${p.id}</span>
+              <span class="weight">${p.weight}</span>
+            </div>
+            <div class="product-bottom">
+              <span class="price">${formatCurrency(p.price)}</span>
+              <div class="product-actions">
+                <input type="number" min="1" value="1" class="qty-input" />
+                <button class="btn-add">Add</button>
+              </div>
+            </div>
+          </div>
+        `;
+        const qtyInput = card.querySelector(".qty-input");
+        const addBtn = card.querySelector(".btn-add");
+        addBtn.addEventListener("click", () => {
+          const qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
+          addToCart(p, qty);
+        });
+        productGrid.appendChild(card);
+      });
+    }
+
+    function addToCart(product, qty) {
+      if (!cart[product.id]) {
+        cart[product.id] = {
+          ...product,
+          qty: 0,
+        };
+      }
+      cart[product.id].qty += qty;
+      updateCartUI();
+      openCart();
+    }
+
+    function updateCartUI() {
+      const ids = Object.keys(cart).filter((id) => cart[id].qty > 0);
+      if (ids.length === 0) {
+        cartItemsContainer.innerHTML =
+          '<p class="cart-empty">No items yet. Add some flavorful shutki.</p>';
+        cartCountSpan.textContent = "0";
+        cartSubtotalSpan.textContent = "৳0";
+        return;
+      }
+
+      cartItemsContainer.innerHTML = "";
+      let totalQty = 0;
+      let subtotal = 0;
+
+      ids.forEach((id) => {
+        const item = cart[id];
+        totalQty += item.qty;
+        subtotal += item.qty * item.price;
+
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+          <div>
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-meta">
+              ${item.qty} x ${formatCurrency(item.price)} · SKU: ${item.id}
+            </div>
+          </div>
+          <div class="cart-item-actions">
+            <button class="cart-qty-btn" data-action="dec">-</button>
+            <span class="cart-qty">${item.qty}</span>
+            <button class="cart-qty-btn" data-action="inc">+</button>
+            <button class="cart-remove">x</button>
+          </div>
+        `;
+
+        const [decBtn, incBtn] = row.querySelectorAll(".cart-qty-btn");
+        const removeBtn = row.querySelector(".cart-remove");
+
+        decBtn.addEventListener("click", () => changeCartQty(id, -1));
+        incBtn.addEventListener("click", () => changeCartQty(id, 1));
+        removeBtn.addEventListener("click", () => removeFromCart(id));
+
+        cartItemsContainer.appendChild(row);
+      });
+
+      cartCountSpan.textContent = totalQty.toString();
+      cartSubtotalSpan.textContent = formatCurrency(subtotal);
+    }
+
+    function changeCartQty(id, delta) {
+      if (!cart[id]) return;
+      cart[id].qty += delta;
+      if (cart[id].qty <= 0) {
+        delete cart[id];
+      }
+      updateCartUI();
+    }
+
+    function removeFromCart(id) {
+      delete cart[id];
+      updateCartUI();
+    }
+
+    function openCart() {
+      cartPanel.classList.add("open");
+    }
+
+    function closeCart() {
+      cartPanel.classList.remove("open");
+    }
+
+    cartOpenBtn.addEventListener("click", openCart);
+    cartCloseBtn.addEventListener("click", closeCart);
+
+    cartPanel.addEventListener("click", (e) => {
+      if (e.target === cartPanel) {
+        closeCart();
+      }
+    });
+
+    checkoutForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const ids = Object.keys(cart).filter((id) => cart[id].qty > 0);
+      if (ids.length === 0) {
+        alert("Your basket is empty. Please add some items first.");
+        return;
+      }
+
+      const name = document.getElementById("custName").value.trim();
+      const phone = document.getElementById("custPhone").value.trim();
+      const address = document.getElementById("custAddress").value.trim();
+      const payment = document.getElementById("custPayment").value;
+
+      let summary = "New Shutki Mach order (demo)\n\nItems:\n";
+      let subtotal = 0;
+      ids.forEach((id) => {
+        const item = cart[id];
+        subtotal += item.qty * item.price;
+        summary += `- ${item.name} (SKU: ${item.id}) x ${item.qty} = ${formatCurrency(
+          item.qty * item.price
+        )}\n`;
+      });
+      summary += `\nSubtotal: ${formatCurrency(subtotal)}\n\nCustomer:\n`;
+      summary += `Name: ${name}\nPhone: ${phone}\nAddress: ${address}\nPayment: ${payment}\n`;
+
+      alert(summary);
+      checkoutForm.reset();
+    });
+
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+
+    document.getElementById("yearNow").textContent =
+      new Date().getFullYear().toString();
+
+    renderProducts();
+  </script>
+</body>
+</html>
