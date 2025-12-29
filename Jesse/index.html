@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JesseIsADumbass.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      /* loud, modern, poppy palette */
+      --bg1: #ffe5f0;
+      --bg2: #ffd6a5;
+      --bg3: #ff9a8b;
+      --card: #fff7f4;
+      --accent: #ff6f91;
+      --accent2: #ffb347;
+      --accent3: #ffc8dd;
+      --text: #311627;
+      --muted: #7a3b57;
+      --roast: #c1121f;
+      --nice: #137b5b;
+      --border-soft: rgba(255, 182, 200, 0.95);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-fun: "Trebuchet MS", "Baloo 2", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, var(--bg3), var(--bg1) 40%, var(--bg2) 90%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 2.5rem 1.2rem 1.5rem;
+    }
+
+    header h1 {
+      font-family: var(--font-fun);
+      font-size: clamp(2rem, 6vw, 3.3rem);
+      letter-spacing: 0.09em;
+      color: #fff;
+      text-shadow:
+        0 0 6px rgba(255, 105, 180, 0.8),
+        0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    header .subtitle {
+      margin-top: 0.6rem;
+      max-width: 720px;
+      margin-inline: auto;
+      font-size: 0.98rem;
+      color: var(--muted);
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.8rem;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .section {
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), var(--card));
+      border-radius: 22px;
+      box-shadow:
+        0 18px 36px rgba(255, 144, 144, 0.38),
+        0 0 0 1px rgba(255, 255, 255, 0.5);
+      padding: 1.6rem 1.4rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.1rem;
+    }
+
+    .section-header {
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .section h2 {
+      font-family: var(--font-fun);
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: var(--accent);
+    }
+
+    .roast {
+      color: var(--roast);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .nice {
+      color: var(--nice);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .section p {
+      font-size: 0.96rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight {
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .image-wrap {
+      text-align: center;
+    }
+
+    .image-wrap img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 20px;
+      border: 3px solid var(--border-soft);
+      box-shadow: 0 16px 26px rgba(255, 120, 150, 0.45);
+      object-fit: cover;
+    }
+
+    .caption {
+      font-size: 0.8rem;
+      margin-top: 0.45rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Over-engineered fatness scale */
+    .fat-scale {
+      margin-top: 0.8rem;
+      padding: 1rem 0.8rem 0.8rem;
+      border-radius: 18px;
+      background: linear-gradient(120deg, #ffe5ec, #fff0d4);
+      border: 1px solid rgba(255, 179, 186, 0.9);
+      font-size: 0.85rem;
+    }
+
+    .fat-scale-title {
+      font-family: var(--font-fun);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fat-scale-title span:last-child {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .fat-scale-bar {
+      position: relative;
+      margin-top: 0.2rem;
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #cdeffd, #ffd6a5, #ff9a8b, #ff6f91);
+      overflow: hidden;
+      box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.5);
+    }
+
+    .fat-mark {
+      position: absolute;
+      top: -6px;
+      width: 2px;
+      height: 34px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .fat-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .jesse-indicator {
+      position: absolute;
+      top: -14px;
+      left: 82%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.7rem;
+      color: var(--roast);
+      font-weight: 700;
+    }
+
+    .jesse-indicator div {
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: #fff0f3;
+      border: 1px solid rgba(255, 128, 156, 0.9);
+      box-shadow: 0 4px 8px rgba(255, 128, 156, 0.4);
+      margin-bottom: 0.2rem;
+    }
+
+    .jesse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #ff3366);
+      box-shadow: 0 0 8px rgba(255, 51, 102, 0.8);
+    }
+
+    .fat-note {
+      margin-top: 0.35rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* fake ad column */
+    aside {
+      padding: 1.2rem 1rem;
+      border-radius: 22px;
+      background: rgba(255, 247, 244, 0.98);
+      border: 2px dashed var(--border-soft);
+      box-shadow: 0 16px 32px rgba(255, 140, 160, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .ads-title {
+      font-family: var(--font-fun);
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .ad-card {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 0.6rem;
+      align-items: center;
+      padding: 0.75rem 0.75rem;
+      border-radius: 16px;
+      background: linear-gradient(125deg, #ffe5f0, #ffe9d6);
+      border: 1px solid rgba(255, 179, 186, 0.9);
+      font-size: 0.82rem;
+    }
+
+    .ad-card img {
+      width: 70px;
+      height: 70px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 182, 193, 0.95);
+      box-shadow: 0 8px 14px rgba(255, 144, 160, 0.55);
+    }
+
+    .ad-card h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+      color: #b8435b;
+    }
+
+    .ad-card p {
+      font-size: 0.78rem;
+      color: #7e4050;
+    }
+
+    .ad-card small {
+      margin-top: 0.15rem;
+      display: block;
+      font-size: 0.7rem;
+      color: #9a5665;
+    }
+
+    /* layout for larger screens */
+    @media (min-width: 880px) {
+      .page {
+        grid-template-columns: minmax(0, 2.3fr) minmax(280px, 1fr);
+        align-items: flex-start;
+      }
+
+      aside {
+        position: sticky;
+        top: 1.5rem;
+      }
+
+      .section {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      }
+
+      .section.reverse {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JesseIsADumbass.com</h1>
+    <p class="subtitle">
+      a modern, over-engineered, scientifically inaccurate roast laboratory dedicated
+      entirely to one cat called jesse, who proves daily that vibes matter more than
+      basic competence.
+    </p>
+  </header>
+
+  <div class="page">
+    <main>
+      <!-- JESSE MAIN ROAST -->
+      <section class="section">
+        <div>
+          <div class="section-header">jesse · primary disaster</div>
+          <h2>fat, lazy, undefeated loser</h2>
+          <p class="roast">
+            jesse is not &quot;curvy&quot;; jesse is what happens when a beanbag develops a
+            meow and starts charging rent for the couch.
+          </p>
+          <p>
+            this cat is built like a <span class="highlight">failed soufflé</span>—collapsed in the
+            middle, soft around the edges, and still somehow demanding praise.
+          </p>
+          <p>
+            most cats hunt; jesse hunts for the nearest flat surface and then loses that
+            battle too by slowly sliding off it in real time.
+          </p>
+          <p>
+            he breathes like someone who just finished a marathon, except his marathon
+            was &quot;walked to the food bowl, stared at it, went back to bed.&quot;
+          </p>
+          <p>
+            if loser energy had a mascot, it would be jesse, blinking proudly after
+            knocking absolutely nothing over because even gravity is bored of him.
+          </p>
+
+          <!-- over-engineered fatness scale -->
+          <div class="fat-scale">
+            <div class="fat-scale-title">
+              <span>scientific fatness index™</span>
+              <span>unit: jesse vs elephants</span>
+            </div>
+            <div class="fat-scale-bar">
+              <!-- scale marks -->
+              <div class="fat-mark" style="left: 0%;"></div>
+              <div class="fat-mark" style="left: 25%;"></div>
+              <div class="fat-mark" style="left: 50%;"></div>
+              <div class="fat-mark" style="left: 75%;"></div>
+              <div class="fat-mark" style="left: 100%;"></div>
+
+              <!-- jesse pointer -->
+              <div class="jesse-indicator">
+                <div>jesse</div>
+                <div class="jesse-dot"></div>
+              </div>
+            </div>
+            <div class="fat-labels">
+              <span>0% elephant · normal cat</span>
+              <span>25% elephant · chunky</span>
+              <span>50% elephant · spherical</span>
+              <span>75% elephant · boss level</span>
+              <span>100% elephant · actual elephant</span>
+            </div>
+            <p class="fat-note">
+              current reading: jesse is operating at 82% elephant, which is impressive
+              for someone whose only cardio is changing sleeping positions.
+            </p>
+          </div>
+        </div>
+
+        <div class="image-wrap">
+          <img src="jesse.png" alt="Jesse, the fat lazy catastrophe" />
+          <div class="caption">
+            jesse, seen here in his natural habitat: doing nothing and somehow still tired.
+          </div>
+        </div>
+      </section>
+
+      <!-- MONKEY COMPARISON -->
+      <section class="section reverse">
+        <div class="image-wrap">
+          <img src="Monkey.png" alt="Monkey who is better at life than Jesse" />
+          <div class="caption">
+            this monkey has more upper-body strength than jesse has functioning brain cells.
+          </div>
+        </div>
+
+        <div>
+          <div class="section-header">jesse vs monkey · unfair but hilarious</div>
+          <h2>even a monkey outperforms her</h2>
+          <p class="roast">
+            the monkey climbs trees, explores the world, and navigates complex
+            environments; jesse gets lost between the living room and the kitchen.
+          </p>
+          <p>
+            the monkey reacts to danger; jesse reacts to snack bags and absolutely
+            nothing else, including his own reflection.
+          </p>
+          <p>
+            give the monkey a puzzle and it&apos;ll figure it out; give jesse a slightly
+            closed door and he&apos;ll emotionally shut down.
+          </p>
+          <p>
+            evolution looked at the monkey and said &quot;survivor&quot;; evolution looked at
+            jesse and said &quot;decorative cushion with sound effects.&quot;
+          </p>
+        </div>
+      </section>
+
+      <!-- JERRY -->
+      <section class="section">
+        <div>
+          <div class="section-header">jerry · the cute one</div>
+          <h2>everything jesse wishes she was</h2>
+          <p class="nice">
+            jerry looks like the protagonist of a feel-good movie; jesse looks like the
+            blurry background extra who got cut from the final edit.
+          </p>
+          <p>
+            jerry&apos;s eyes say &quot;i deserve love and treats&quot;; jesse&apos;s eyes say &quot;i ate
+            your snacks, your patience, and i&apos;m still starving.&quot;
+          </p>
+          <p>
+            photos of jerry belong on calendars; photos of jesse belong in powerpoint
+            presentations labeled &quot;what not to become.&quot;
+          </p>
+          <p>
+            jerry can make anyone smile; jesse can make anyone ask &quot;how is one cat shaped like that?&quot;
+          </p>
+        </div>
+
+        <div class="image-wrap">
+          <img src="jerry.jpg" alt="Jerry, the cute and lovely cat" />
+          <div class="caption">
+            jerry, single-handedly carrying the aesthetic reputation of the entire household.
+          </div>
+        </div>
+      </section>
+
+      <!-- JHIKI -->
+      <section class="section reverse">
+        <div class="image-wrap">
+          <img src="Jhiki.png" alt="Jhiki, elegant and smart" />
+          <div class="caption">
+            jhiki, running complex mental simulations while jesse forgets why she stood up.
+          </div>
+        </div>
+
+        <div>
+          <div class="section-header">jhiki · elegance plus brain cells</div>
+          <h2>smart, graceful, not jesse</h2>
+          <p class="nice">
+            jhiki walks like she&apos;s late for a meeting with the ceo; jesse walks like
+            the floor is lava and also feelings.
+          </p>
+          <p>
+            jhiki understands doors, routines, and humans; jesse understands only two
+            concepts: &quot;food&quot; and &quot;being dramatically offended.&quot;
+          </p>
+          <p>
+            where jhiki is <span class="highlight">art gallery energy</span>, jesse is &quot;that one chair
+            in the dentist&apos;s waiting room everyone avoids.&quot;
+          </p>
+          <p>
+            if cats had report cards, jhiki would get &quot;excellent&quot;; jesse would get
+            &quot;participated in naps, almost.&quot;
+          </p>
+        </div>
+      </section>
+
+      <!-- KIMI -->
+      <section class="section">
+        <div>
+          <div class="section-header">kimi · sophisticated and calm</div>
+          <h2>the classy final boss</h2>
+          <p class="nice">
+            kimi looks like they listen to vinyl jazz and judge wine; jesse looks like
+            she eats cardboard boxes and loses arguments with gravity.
+          </p>
+          <p>
+            kimi&apos;s calm stare says &quot;i own this house&quot;; jesse&apos;s stare says &quot;i might
+            fall off this bed if i blink too hard.&quot;
+          </p>
+          <p>
+            kimi is minimalist sculpture; jesse is maximalist chaos in the shape of a
+            slightly overfilled pastry.
+          </p>
+          <p>
+            in any room, kimi is the statement piece; jesse is the &quot;before&quot; photo
+            from a lifestyle makeover show.
+          </p>
+        </div>
+
+        <div class="image-wrap">
+          <img src="kimi.jpg" alt="Kimi, sophisticated and calm" />
+          <div class="caption">
+            kimi, radiating quiet superiority while jesse snores somewhere off-camera.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FAKE ADS -->
+    <aside>
+      <div class="ads-title">suspicious cat ads jesse would click</div>
+
+      <div class="ad-card">
+        <img src="jerry.jpg" alt="Cute cat ad mascot" />
+        <div>
+          <h3>cute desperate persian 2 miles away</h3>
+          <p>
+            lonely, fluffy, and specifically looking for someone who is not a breathing
+            beanbag like jesse. limited spots, unlimited fluff.
+          </p>
+          <small>*requires basic hygiene, zero couch crumbs, and at least one working brain cell.</small>
+        </div>
+      </div>
+
+      <div class="ad-card">
+        <img src="Monkey.jpg" alt="Athletic monkey ad mascot" />
+        <div>
+          <h3>30-second workout to get abs</h3>
+          <p>
+            monkeys hate this one trick! do this once a day and allegedly stop being a
+            potato. perfect for felines named anything except &quot;jesse.&quot;
+          </p>
+          <small>*results not typical; jesse closed this tab halfway through reading the title.</small>
+        </div>
+      </div>
+
+      <div class="ad-card">
+        <img src="Jhiki.jpg" alt="Smart cat ad mascot" />
+        <div>
+          <h3>free catnip (totally not a scam)</h3>
+          <p>
+            enter your human&apos;s credit card, address, favorite snacks, and deepest fears
+            to receive one (1) sprinkle of suspicious catnip.
+          </p>
+          <small>*only an absolute fool would fall for this, which is why jesse already signed up twice.</small>
+        </div>
+      </div>
+
+      <div class="ad-card">
+        <img src="jesse.jpg" alt="Jesse as ad victim" />
+        <div>
+          <h3>become a professional sleeper</h3>
+          <p>
+            earn 0$/hour by doing what you already do: nothing. start your &quot;career&quot;
+            today and join our elite jesse-level laziness program.
+          </p>
+          <small>*no qualifications needed; in fact, qualifications are a red flag.</small>
+        </div>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>
